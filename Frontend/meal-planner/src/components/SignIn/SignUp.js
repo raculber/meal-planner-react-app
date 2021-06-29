@@ -30,7 +30,9 @@ const SignUp = (props) => {
                 <Button type="submit" content="Create Account"/>
             </form>
 
+
         </Card>
+     // what the hell//
 
     );
 
