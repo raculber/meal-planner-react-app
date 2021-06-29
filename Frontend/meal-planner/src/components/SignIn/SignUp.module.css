@@ -1,0 +1,37 @@
+.header {
+    font-size: x-large;
+    font-family: Verdana;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+.input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.input label {
+    padding: 25px;
+    font-size: larger;
+    font-family: Verdana;
+    font-weight: bold;
+}
+.input input {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 75%;
+    height: 25px;
+    border-radius: 4px;
+    font-size: large;
+
+}
+
+.input input:focus {
+    background-color: none;
+    box-shadow: 0 8px 16px 0 rgba(121, 119, 119, 0.644);
+
+}
