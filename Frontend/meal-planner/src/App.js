@@ -9,7 +9,7 @@ function App() {
         <Route path='/' exact>
           <Redirect to='/sign-in'/>
         </Route>
-        <Route path='sign-in'>
+        <Route path='/sign-in'>
           <SignIn/>
         </Route>
         <Route path="/sign-up">
