@@ -1,19 +1,24 @@
 import SignUp from "./components/SignIn/SignUp";
-import SignIn from './components/SignIn/SignIn';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import SignIn from "./components/SignIn/SignIn";
+import Home from "./components/Home/Home";
+
+import { Route, Switch, Redirect } from "react-router-dom";
 
 function App() {
   return (
     <div>
       <Switch>
-        <Route path='/' exact>
-          <Redirect to='/sign-in'/>
+        <Route path="/" exact>
+          <Redirect to="/sign-in" />
         </Route>
-        <Route path='/sign-in'>
-          <SignIn/>
+        <Route path="/sign-in">
+          <SignIn />
         </Route>
         <Route path="/sign-up">
-          <SignUp/>
+          <SignUp />
+        </Route>
+        <Route path="/home">
+          <Home />
         </Route>
       </Switch>
     </div>

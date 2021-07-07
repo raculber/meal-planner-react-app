@@ -1,0 +1,82 @@
+p {
+  font-size: x-large;
+  font-family: Arial;
+  font-weight: bold;
+  text-align: center;
+  color: red;
+}
+header {
+  font-size: xx-large;
+  font-family: Arial;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: underline;
+  color: black;
+  padding: 4px;
+}
+.notification {
+  font-size: large;
+  font-family: Arial;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+}
+.cancel {
+  font-size: x-large;
+  font-family: Arial;
+  font-weight: bold;
+  text-align: center;
+  color: red;
+  cursor: pointer;
+  padding-bottom: 10px;
+  padding-top: 5px;
+}
+.cancel:hover {
+  text-decoration: underline;
+}
+.img {
+  z-index: -1;
+  width: 100%;
+  height: auto;
+  opacity: 0.5;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+form input.invalid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(243, 200, 200);
+}
+form input.invalid:focus {
+  box-shadow: 0 8px 16px 0 rgb(238, 139, 139);
+}
+form label {
+  padding: 20px;
+  font-size: larger;
+  font-family: Arial;
+  font-weight: bold;
+}
+form input {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 75%;
+  height: 25px;
+  border-radius: 4px;
+  font-size: large;
+}
+
+form input:focus {
+  background-color: none;
+  box-shadow: 0 8px 16px 0 rgba(121, 119, 119, 0.644);
+}

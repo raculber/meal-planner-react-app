@@ -1,11 +1,12 @@
-import classes from './Header.module.css';
+import classes from "./Header.module.css";
+import { NavLink } from "react-router-dom";
 
 const Header = (props) => {
-    return(
-    <div className={classes.header}>
-        {props.children}
-    </div>);
-
+  return (
+    <section className={classes.header}>
+      <h2>{props.title}</h2>
+    </section>
+  );
 };
 
 export default Header;
