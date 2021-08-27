@@ -7,7 +7,10 @@ export const sendUserData = (userData) => {
 
     Axios.post("http://localhost:3001/api/add-user", userData).then(
       (response) => {
-        let count = response.data["COUNT(email)"];
+        let countObj = response.data[0];
+        let count = countObj["COUNT(email)"];
+        let userId = response.data[1];
+
         if (count > 0) {
           dispatch(
             notificationActions.sendNotification({
@@ -18,6 +21,35 @@ export const sendUserData = (userData) => {
           dispatch(
             notificationActions.sendNotification({
               message: "Success",
+              optional: userId,
+            })
+          );
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  };
+};
+
+export const validateSignIn = (userData) => {
+  return (dispatch) => {
+    Axios.post("http://localhost:3001/api/sign-in", userData).then(
+      (response) => {
+        let id = response.data["userId"];
+        if (id === undefined) {
+          dispatch(
+            notificationActions.sendNotification({
+              message: "Error logging in",
+            })
+          );
+        } else {
+          console.log(id);
+          dispatch(
+            notificationActions.sendNotification({
+              message: "Success",
+              optional: id,
             })
           );
         }

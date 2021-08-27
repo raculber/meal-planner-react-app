@@ -16,5 +16,5 @@ const signUpSlice = createSlice({
   },
 });
 
-export const { addUser } = signUpSlice.actions;
+export const { addUser, signIn } = signUpSlice.actions;
 export default signUpSlice;

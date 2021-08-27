@@ -6,11 +6,11 @@ import Header from "../UI/Header";
 
 import background from "../../images/thali.jpg";
 
-import { notificationActions } from "../../store/notifcation-slice";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sendUserData } from "../../store/sign-up-actions";
+import { notificationActions } from "../../store/notifcation-slice";
 
 let isInitial = true;
 const SignUp = (props) => {
@@ -22,18 +22,25 @@ const SignUp = (props) => {
     passwordValid: false,
     reenteredPassValid: false,
   });
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const history = useHistory();
   const dispatch = useDispatch();
+  let id = useSelector((state) => state.notification.optional);
   let message = useSelector((state) => state.notification.message);
+
+  useEffect(() => {
+    if (message === "Success") {
+      localStorage.setItem("signedIn", true);
+      localStorage.setItem("userId", id);
+      props.loginChangeHandler();
+      history.push("/home/recipes?userId=" + id);
+    }
+  }, [message, id, history, dispatch, props]);
 
   const emailChangeHandler = (event) => {
     setValidateForm({ ...validateForm, enteredEmail: event.target.value });
   };
-
-  useEffect(() => {
-    if (message === "Success") history.push("./home");
-  }, [message, history]);
 
   const passwordChangeHandler = (event) => {
     setValidateForm({
@@ -58,28 +65,34 @@ const SignUp = (props) => {
       passwordValid: enteredPassword.trim().length !== 0,
       reenteredPassValid: enteredPassword === reenteredPass,
     });
-
-    const { emailValid, passwordValid, reenteredPassValid } = validateForm;
     isInitial = false;
-    if (emailValid && passwordValid && reenteredPassValid && !isInitial) {
-      try {
-        dispatch(sendUserData({ enteredEmail, enteredPassword }));
-      } catch (error) {
-        console.log(error);
-      }
-    }
   };
-
+  const { emailValid, passwordValid, reenteredPassValid } = validateForm;
+  if (emailValid && passwordValid && reenteredPassValid && !isInitial) {
+    setIsDisabled(true);
+    try {
+      dispatch(sendUserData({ enteredEmail, enteredPassword }));
+      isInitial = true;
+    } catch (error) {
+      console.log(error);
+    }
+    setIsDisabled(false);
+  }
+  //message = useSelector((state) => state.notification.message);
   const cancelHandler = () => {
+    dispatch(notificationActions.sendNotification({ message: "" }));
     history.push("/sign-in");
   };
 
   return (
     <div>
       <img className={classes.img} src={background} alt="Thali" />
+      <Header>
+        <h2>Meal Planner</h2>
+      </Header>
       <Card>
         <header className={classes.header}>Sign-Up</header>
-        <form onSubmit={submitFormHandler}>
+        <form className={classes.form} onSubmit={submitFormHandler}>
           <label htmlFor="email" id="email">
             Enter Your Email
           </label>
@@ -106,7 +119,7 @@ const SignUp = (props) => {
             onChange={passwordChangeHandler}
           ></input>
           {!validateForm.passwordValid && !isInitial && (
-            <p>Please enter a valid password</p>
+            <p className={classes.error}>Please enter a valid password</p>
           )}
           <label htmlFor="passwordretype" id="passwordretype">
             Re-Type Password
@@ -122,14 +135,18 @@ const SignUp = (props) => {
             onChange={passReenterChangeHangler}
           ></input>
           {!validateForm.reenteredPassValid && !isInitial && (
-            <p>Passwords must match</p>
+            <p className={classes.error}>Passwords must match</p>
           )}
-          <Button type="submit" content="Create Account" />
+          <Button
+            isDisabled={isDisabled}
+            type="submit"
+            content="Create Account"
+          />
         </form>
         <div className={classes.cancel} onClick={cancelHandler}>
           Cancel
         </div>
-        <p>{message !== "Success" ? message : ""}</p>
+        <p className={classes.error}>{message !== "Success" ? message : ""}</p>
       </Card>
     </div>
   );

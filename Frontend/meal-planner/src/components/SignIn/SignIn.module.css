@@ -1,9 +1,8 @@
-p {
-  font-size: x-large;
-  font-family: Arial;
-  font-weight: bold;
+.signIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
-  color: red;
 }
 header {
   font-size: xx-large;
@@ -14,13 +13,15 @@ header {
   color: black;
   padding: 4px;
 }
-.notification {
-  font-size: large;
+p.error {
+  font-size: 20px;
   font-family: Arial;
   font-weight: bold;
   text-align: center;
-  color: black;
+  color: red;
+  padding-bottom: 10px;
 }
+
 .cancel {
   font-size: x-large;
   font-family: Arial;
@@ -44,39 +45,58 @@ header {
   top: 50%;
   left: 50%;
 }
-form {
+.form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-form input.invalid {
+.form input.invalid {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: rgb(243, 200, 200);
 }
-form input.invalid:focus {
+.form input.invalid:focus {
   box-shadow: 0 8px 16px 0 rgb(238, 139, 139);
 }
-form label {
+.form label {
   padding: 20px;
   font-size: larger;
   font-family: Arial;
   font-weight: bold;
 }
-form input {
+.form input {
   padding: 10px;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   width: 75%;
   height: 25px;
   border-radius: 4px;
   font-size: large;
 }
 
-form input:focus {
+.form input:focus {
   background-color: none;
   box-shadow: 0 8px 16px 0 rgba(121, 119, 119, 0.644);
+}
+.nav ul {
+  list-style: none;
+  text-align: center;
+  margin: auto;
+  padding-bottom: 25px;
+  display: inline-block;
+}
+.nav a {
+  text-decoration: none;
+  font-size: 25px;
+  color: #be369c;
+}
+
+.nav a:hover,
+.nav a:active,
+.nav a.active {
+  text-decoration: underline;
+  color: #df7ec7;
 }

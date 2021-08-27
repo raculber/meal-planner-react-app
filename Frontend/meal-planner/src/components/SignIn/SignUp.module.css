@@ -7,8 +7,8 @@
   color: black;
   padding: 4px;
 }
-p {
-  font-size: x-large;
+p.error {
+  font-size: 20px;
   font-family: Arial;
   font-weight: bold;
   text-align: center;
@@ -39,29 +39,29 @@ p {
   top: 50%;
   left: 50%;
 }
-form {
+.form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-form input.invalid {
+.form input.invalid {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: rgb(243, 200, 200);
 }
-form input.invalid:focus {
+.form input.invalid:focus {
   box-shadow: 0 8px 16px 0 rgb(238, 139, 139);
 }
-form label {
+.form label {
   padding: 20px;
   font-size: larger;
   font-family: Arial;
   font-weight: bold;
 }
-form input {
+.form input {
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -71,7 +71,7 @@ form input {
   font-size: large;
 }
 
-form input:focus {
+.form input:focus {
   background-color: none;
   box-shadow: 0 8px 16px 0 rgba(121, 119, 119, 0.644);
 }

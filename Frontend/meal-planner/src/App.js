@@ -1,10 +1,17 @@
 import SignUp from "./components/SignIn/SignUp";
 import SignIn from "./components/SignIn/SignIn";
 import Home from "./components/Home/Home";
+import Recipes from "./components/Recipes/Recipes";
 
 import { Route, Switch, Redirect } from "react-router-dom";
-
+import { useState } from "react";
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("signedIn")
+  );
+  const loginChangeHandler = () => {
+    setIsLoggedIn(localStorage.getItem("signedIn"));
+  };
   return (
     <div>
       <Switch>
@@ -12,13 +19,20 @@ function App() {
           <Redirect to="/sign-in" />
         </Route>
         <Route path="/sign-in">
-          <SignIn />
+          {isLoggedIn !== "true" && (
+            <SignIn loginChangeHandler={loginChangeHandler} />
+          )}
         </Route>
         <Route path="/sign-up">
-          <SignUp />
+          {isLoggedIn !== "true" && (
+            <SignUp loginChangeHandler={loginChangeHandler} />
+          )}
         </Route>
-        <Route path="/home">
-          <Home />
+        <Route path="/home/recipes">
+          {isLoggedIn && <Recipes loginChangeHandler={loginChangeHandler} />}
+        </Route>
+        <Route path="/home" exact>
+          {isLoggedIn && <Home loginChangeHandler={loginChangeHandler} />}
         </Route>
       </Switch>
     </div>
